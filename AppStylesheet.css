@@ -1,0 +1,11 @@
+.center{
+    text-align: center;
+}
+
+.Titre, .Description, .button{
+    margin-top:2%;
+}
+
+.DescMarg{
+    margin-top: 5%;
+}
