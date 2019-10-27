@@ -1,6 +1,6 @@
 <?php
 include("stdafx.php");
-include('bugManager.php');
+include('../Models/bugManager.php');
 
 ?>
 

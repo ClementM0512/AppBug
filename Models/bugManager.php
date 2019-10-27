@@ -1,7 +1,7 @@
 
 <?php
   include('bug.php');
-  include('conn.php');
+  include('../conn.php');
   class bugManager{
     private $bug = [];
 
