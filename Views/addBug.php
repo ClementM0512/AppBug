@@ -1,6 +1,7 @@
 <?php
+include('./Models/bugManager.php');
 include("stdafx.php");
-include('../Models/bugManager.php');
+
 
 ?>
 
@@ -21,6 +22,7 @@ include('../Models/bugManager.php');
     <?php
     if(empty($_POST)){ ?>
       <form action="" method="post">
+
         <input class="Titre form-control"type="text" name="titre" value = '' placeholder="Titre du bug"/>
         <textarea class="Description form-control" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea>
         <input type="hidden" name="statut" value ="0"/>
@@ -30,10 +32,10 @@ include('../Models/bugManager.php');
       </form>
   </div>
 
-  <form action="liste.php" method="">
-    <button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></button>
-  </form>
-    <?php }
+    <a href="list" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+
+
+<?php }
     else{
 
       $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"");
@@ -42,7 +44,7 @@ include('../Models/bugManager.php');
       // var_dump($bug);die; 
       $manager = new bugManager();
       $manager->addBug($bug);
-      header("Location:liste.php");
+      header("Location:list");
 
     } ?>
 

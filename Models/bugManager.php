@@ -1,40 +1,43 @@
 
 <?php
   include('bug.php');
-  include('../conn.php');
-  class bugManager{
-    private $bug = [];
+  include('Manager.php');
 
+  class bugManager extends Manager{
+    private $bugs = [];
 
     function __construct() {
 
     }
 
     function Find($id){
-      $bdd = connexionBdd();
+      $bdd = $this->connexionBdd();
       $bug = $bdd->query('SELECT * FROM `bug` WHERE id="'.$id.'"',PDO::FETCH_ASSOC);
-      return $bug->fetch();
+      // var_dump($bug);
+
+
+      return($bug->fetch());
     }
 
     function FindAll() {
-      foreach($this->bug as $bug){
-        return $this->bug;
+      foreach($this->bugs as $bug){
+        return $this->bugs;
       }
     }
 
     function load(){
-      $bdd = connexionBdd();
+      $bdd = $this->connexionBdd();
       $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
 
       while ($donnee=$bugs->fetch()){
         $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
-        // var_dump($donnee['createdAt']);die;
-        array_push($this->bug,$bug);
+        // var_dump($bug);
+        array_push($this->bugs,$bug);
       }
     }
 
     function addBug(Bug $newBug){
-      $bdd = connexionBdd();
+      $bdd = $this->connexionBdd();
       $date = new DateTime();
       $date = $date->format('Y-m-d H:i:s');
 

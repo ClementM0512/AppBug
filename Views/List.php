@@ -1,7 +1,7 @@
 <?php
 
-include("../Models/bugManager.php");
-include("stdafx.php");
+include("./Models/bugManager.php");
+// include("stdafx.php");
 
 $bugManager = new bugManager();
 $bugManager->load();
@@ -19,13 +19,9 @@ $bugManager->load();
   <body class="container">
 
     <h1 class="center title">Liste des bugs</h1>
-    <form action="addBug.php" method="">
-    </br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fa fa-plus fa-3x "></i></button></div>
-    </form>
+    </br> <a href="add" class="btn btn-success"><i class="fa fa-plus fa-3x "></i></a>
 
     
-
-
     <table class="table">
       <h3 class="center"> Listes des bugs rencontrées</h3>
   
@@ -51,16 +47,16 @@ $bugManager->load();
               <td><?php
               if ($bug->getStatut()==0){?>
 
-                <div class="btn btn-warning">Non traiter</div>
+                <div class="badge badge-warning">Non traiter</div>
 
               <?php }
               else{ ?>
 
-                <div class="btn btn-primary">Résolut</div>
+                <div class="badge badge-primary">Résolut</div>
 
               <?php } ?> </td>
               <td><?=$bug->getCreatedAt();?> </td>
-              <td><a href="show.php?id=<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
+              <td><a href="show/<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
             </tr>
           <?php } ?>
       </tr>

@@ -1,26 +1,27 @@
 <?php
 
-include("../Models/bugManager.php");
+include("./Models/bugManager.php");
 include("stdafx.php");
 
 
-//FAIRE LA FONC FINDBYID//
-$id=$_GET['id'];
-$bugManager = new bugManager();
-$bug = $bugManager->Find($id);
-?>
+$arguments = explode("/", $_SERVER["REQUEST_URI"]);
 
+$bugManager = new bugManager();
+$bug = $bugManager->Find($arguments[5]);
+?>
 
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?=$bug['titre'];?></title>
+    <title>Description du bug</title>
     <meta charset="utf-8" />
   </head>
-  <body class="container">
 
+
+  <body class="container">
+    
     <h1 class="center">Bug : </h1>
     <h3 class="center"><?=$bug['titre'];?></h3>
 
@@ -36,9 +37,9 @@ $bug = $bugManager->Find($id);
       <?php } ?>
 
     </div>
-    <form action="liste.php" method="">
-    <div id="bouton"><button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></button></div>
-    </form>
+    
+    <a href="../list" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+ 
 
   </body>
 </html>
