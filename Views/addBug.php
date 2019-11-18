@@ -1,5 +1,5 @@
 <?php
-include('./Models/bugManager.php');
+// include('./Models/bugManager.php');
 include("stdafx.php");
 
 

@@ -2,6 +2,7 @@
 
 <?php
 include("Views/stdafx.php");
+include("Controller/BugController.php");
 
 $url = '';
 
@@ -19,13 +20,13 @@ switch ($arguments[4]) {
 
     case "":
     case "list":
-        require 'Views/List.php';
+        return (new BugController())->list();
         break;
     case "show":
-        require 'Views/show.php';
+        return (new BugController())->show();
         break;
     case "add":
-        require 'Views/addBug.php';
+        return (new BugController())->add();
         break;
     default:
         require '404.php';

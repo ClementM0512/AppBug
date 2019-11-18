@@ -28,10 +28,11 @@
     function load(){
       $bdd = $this->connexionBdd();
       $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
+      // var_dump($bdd);
 
       while ($donnee=$bugs->fetch()){
         $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
-        // var_dump($bug);
+        //var_dump($bug);
         array_push($this->bugs,$bug);
       }
     }

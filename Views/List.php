@@ -1,6 +1,6 @@
 <?php
 
-include("./Models/bugManager.php");
+// include("./Models/bugManager.php");
 // include("stdafx.php");
 
 $bugManager = new bugManager();
@@ -38,7 +38,8 @@ $bugManager->load();
       <tbody>
         <tr>
           
-          <?php foreach($bugManager->FindAll() as $bug){ ?>
+          <?php 
+          foreach($bugManager->FindAll() as $bug){ ?>
             <tr>
 
               <td><?= $bug->getId();?></td>
