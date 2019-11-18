@@ -15,7 +15,7 @@ class BugController{
             header('Location: /bug/list');
         }
         else{
-            $content = $this->render('Views/add', []);
+            $content = $this->render('Views/addBug', []);
             return $this->sendHttpResponse($content, 200);
         }
     }
@@ -30,7 +30,7 @@ class BugController{
 
     public function Show($id){
         $bugManager = new BugManager();
-        $bugs = $bugManager->find();
+        $bugs = $bugManager->find($id);
         $content = $this->render('Views/show', ['bugs' => $bugs]);
         
         return $this->sendHttpResponse($content, 200);    
