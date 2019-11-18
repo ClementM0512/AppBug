@@ -23,7 +23,8 @@ switch ($arguments[4]) {
         return (new BugController())->list();
         break;
     case "show":
-        return (new BugController())->show($_POST["id"]);
+        $id = $arguments[5];
+        return (new BugController())->show($id);
         break;
     case "add":
         return (new BugController())->add();
