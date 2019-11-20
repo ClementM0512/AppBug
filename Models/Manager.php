@@ -5,7 +5,7 @@ class Manager{
 
   function connexionBdd(){
 
-    require('params.php');
+    require_once('params.php');
 
     try
     {
