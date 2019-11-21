@@ -28,25 +28,25 @@ include("stdafx.php");
         <input type="hidden" name="statut" value ="0"/>
 
 
-        <input class="btn btn-success button"type="submit" value="Valider" />
+        <input class="btn btn-success button" type="submit" value="Valider" />
       </form>
   </div>
 
     <a href="list" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+      
 
-
-<?php }
+<!-- <?php }
     else{
 
-      $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"");
+      // $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"");
 
 
       // var_dump($bug);die; 
-      $manager = new bugManager();
-      $manager->addBug($bug);
-      header("Location:list");
+      // $manager = new bugManager();
+      // $manager->addBug($bug);
+      // header("Location:list");
 
-    } ?>
+    } ?> -->
 
   </body>
 </html>

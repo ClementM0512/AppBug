@@ -4,15 +4,13 @@ require('Models/bugManager.php');
 class BugController{
 
     public function Add(){
-        if(isset($_POST['submit'])){
+        
+        if(isset($_POST['titre'])){
             $bugManager = new BugManager();
-            $bug = new Bug();
-            $bug->setTitre($_POST["titre"]);
-            $bug->setDescription($_POST["description"]);
-            $bug->setStatut($_POST["statut"]);
-            $bug->setCreatedAt($_POST["createdAt"]);
-            $bugManager->add($bug);
-            header('Location: /bug/list');
+            $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"");
+            $bugManager->addBug($bug);
+            header('Location: list'); 
+            
         }
         else{
             $content = $this->render('Views/addBug', []);
@@ -55,5 +53,10 @@ class BugController{
         echo $content;
     }
 
+    public function Error(){
+        $content = $this->render('404',[]);
+        
+        return $this->sendHttpResponse($content, 200);
+    }
 }
 ?>
