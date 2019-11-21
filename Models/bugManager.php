@@ -44,6 +44,12 @@
 
       $bdd->query('INSERT INTO `bug` (titre, description, statut, createdAt) VALUE ("'.$newBug->getTitre(). '", "'.$newBug->getDescription(). 
       '", "'. $newBug->getStatut(). '", "'.$date.'")'); 
+      
+      //changer query par:
+      // prepare
+      // BINd value
+
+
     }
   }
 ?>
