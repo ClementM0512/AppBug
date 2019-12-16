@@ -33,10 +33,10 @@ $bug = $bugManager->Find($arguments[5]);
       <?=$bug['description'];?><br>
 
       <?php if ($bug['statut']==0){?>
-        <div class="btn btn-warning DescMarg">Non traiter</div>
+        <div class="badge badge-warning DescMarg">Non traiter</div>
       <?php }
       else{ ?>
-        <div class="btn btn-primary DescMarg">Résolut</div>
+        <div class="badge badge-primary DescMarg">Résolut</div>
       <?php } ?>
 
     </div>

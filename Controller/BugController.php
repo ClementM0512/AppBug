@@ -34,6 +34,10 @@ class BugController{
         return $this->sendHttpResponse($content, 200);    
     }
 
+    public function Update(){
+        
+    }
+
     public function render($templatePath, $params){
         $templatePath = $templatePath . ".php";
 

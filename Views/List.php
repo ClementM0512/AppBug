@@ -41,7 +41,7 @@ $bugManager->load();
           
           <?php 
           foreach($bugManager->FindAll() as $bug){ ?>
-            <tr>
+            <tr id="Bug_<?= $bug->getId();?>">
 
               <td><?= $bug->getId();?></td>
               <td><?= $bug->getTitre();?></td>
@@ -49,7 +49,7 @@ $bugManager->load();
               <td><?php
               if ($bug->getStatut()==0){?>
 
-                <div class="badge badge-warning">Non traiter</div>
+                <a href="" class="trigger badge badge-warning">Non traiter</a>
 
               <?php }
               else{ ?>
@@ -65,4 +65,5 @@ $bugManager->load();
     </table></div>
     
   </body>
+  <script src="Ressources/js/app.js"></script>
 </html>
