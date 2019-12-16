@@ -12,6 +12,7 @@ $bugManager->load();
 <!DOCTYPE html>
 <html>
   <head>
+    <?php require("stdafx.php");?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Liste des bugs</title>
     <meta charset="utf-8" />
