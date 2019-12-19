@@ -1,4 +1,3 @@
-
 <?php
   include('bug.php');
   include('Manager.php');
@@ -10,22 +9,25 @@
 
     }
 
-    function Find($id){
+    public function Find($id){
       $bdd = $this->connexionBdd();
-      $bug = $bdd->query('SELECT * FROM `bug` WHERE id="'.$id.'"',PDO::FETCH_ASSOC);
+      $state = $bdd->prepare('SELECT * FROM `bug` WHERE id=:id');
       // var_dump($bug);
+      $state->execute(['id' => $id]);
 
+      $data = $state->fetch(PDO::FETCH_ASSOC);
+      $bug = new Bug($data['id'], $data['titre'], $data['description'], $data['statut'], $data['createdAt']);
 
-      return($bug->fetch());
+      return($bug);
     }
 
-    function FindAll() {
+    public function FindAll() {
       foreach($this->bugs as $bug){
         return $this->bugs;
       }
     }
 
-    function load(){
+    public function load(){
       $bdd = $this->connexionBdd();
       $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
       // var_dump($bdd);
@@ -37,19 +39,36 @@
       }
     }
 
-    function addBug(Bug $newBug){
+    public function addBug(Bug $newBug){
       $bdd = $this->connexionBdd();
       $date = new DateTime();
       $date = $date->format('Y-m-d H:i:s');
 
-      $bdd->query('INSERT INTO `bug` (titre, description, statut, createdAt) VALUE ("'.$newBug->getTitre(). '", "'.$newBug->getDescription(). 
-      '", "'. $newBug->getStatut(). '", "'.$date.'")'); 
+      // $bdd->query('INSERT INTO `bug` (titre, description, statut, createdAt) VALUE ("'.$newBug->getTitre(). '", "'.$newBug->getDescription(). 
+      // '", "'. $newBug->getStatut(). '", "'.$date.'")'); 
+
+      //changer par:
+      //prepare, execute, fetch
+      $state = $bdd->prepare("INSERT INTO `bug` (titre, description, statut, createdAt) VALUE (:title, :description, :statut, :createdAt)");
+      $state->execute([
+        'title' => $newBug->getTitre(),
+        'description' => $newBug->getDescription(),
+        'statut' => $newBug->getStatut(),
+        'createdAt' => $date
+      ]);
+
+    }
+
+    public function UpdateBug(Bug $bug){
+      $bdd = $this->connexionBdd();
+      // var_dump($bug->getTitre());die;
+      $state = $bdd->prepare("UPDATE `bug` SET titre = :title, description = :description, statut = :statut WHERE id=:id");
+      $state->execute([
+        'title' => $bug->getTitre(),
+        'description' => $bug->getDescription(),
+        'statut' => $bug->getStatut(),
+        'id' => $bug->getId()]);
       
-      //changer query par:
-      // prepare
-      // BINd value
-
-
     }
   }
 ?>

@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-
 <?php
-include("Views/stdafx.php");
 include("Controller/BugController.php");
 
 // var_dump($_SERVER["REQUEST_URI"]);
@@ -9,6 +6,7 @@ include("Controller/BugController.php");
 $arguments = explode("/", $_SERVER["REQUEST_URI"]);
 
 // var_dump($arguments);
+
 
 
 switch ($arguments[4]) {
@@ -25,7 +23,8 @@ switch ($arguments[4]) {
         return (new BugController())->Add();
         break;
     case "updt":
-        return (new BugController())->Update();
+        $idBug = $arguments[5];
+        return (new BugController())->Update($idBug);
         break;
     default:
         return (new BugController())->Error(); //Erreur 404

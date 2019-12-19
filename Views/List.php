@@ -46,7 +46,7 @@ $bugManager->load();
               <td><?= $bug->getId();?></td>
               <td><?= $bug->getTitre();?></td>
               <td><?=$bug->getDescription();?> </td>
-              <td><?php
+              <td id="td_<?= $bug->getId();?>"><?php
               if ($bug->getStatut()==0){?>
 
                 <a href="" class="trigger badge badge-warning">Non traiter</a>

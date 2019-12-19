@@ -34,8 +34,26 @@ class BugController{
         return $this->sendHttpResponse($content, 200);    
     }
 
-    public function Update(){
+    public function Update($id){
+        $bugManager = new BugManager();
+        $bug = $bugManager->find($id);
+
+        if (isset($_POST)) {//Si data en post
+            if (isset($_POST['statut'])) {
+                $bug->setStatut($_POST['statut']);
+            }
+    
+            $bugManager->UpdateBug($bug); 
+        }
         
+        http_response_code(200);
+        header("Content-Type: application/json");
+        $response=[
+            'success' => true,
+            'id'=> $bug->getId()
+        ];
+
+        echo json_encode($response);
     }
 
     public function render($templatePath, $params){

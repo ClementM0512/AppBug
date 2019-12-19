@@ -1,7 +1,4 @@
-﻿<!DOCTYPE html>
-<?php
-
-
+﻿<?php
     class Bug{
         public $id;
         public $titre;

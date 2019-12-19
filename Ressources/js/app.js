@@ -1,6 +1,7 @@
 var els = document.getElementsByClassName("trigger");
 var idBug = document.getElementsByClassName("idBug");
 
+
 var xhr = new XMLHttpRequest();
 Array.from(els).forEach(el =>{
     el.addEventListener("click", MakeRequest);
@@ -8,12 +9,12 @@ Array.from(els).forEach(el =>{
 
 function MakeRequest(e){
     e.preventDefault();
-    let url = "AppBug/updt";
+    idBug = ((this.parentElement.parentElement).id).substring(4);
 
-    console.log(this.parentElement.parentElement);
-    //recup parent / .parent()
-    
-    let params = "id=" + idBug.value;
+    let url = "updt/" + idBug;
+    let params = "statut=" + 1;
+    // console.log(idBug);
+
     xhr.onreadystatechange = AlertContent;
 
     xhr.open('POST', url);
@@ -22,5 +23,71 @@ function MakeRequest(e){
 }
 
 function AlertContent(){
-    
-}
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+
+        let obj = JSON.parse(xhr.responseText);
+          
+        let string = [];
+        let i = 0;
+        Object.keys(obj).forEach(function (k) {
+            string[i] =  obj[k] ;
+            i++
+        });
+        
+        if (string[0] = "true") {
+            let td = document.getElementById("td_" + string[1]);
+             td.innerHTML = "Résolut";
+             td.classList.remove("badge-warning");
+             td.classList.add("badge-primary");
+        }
+
+        // console.log(els);
+    }
+};
+
+
+
+
+//Requete api (postman)
+
+// GET
+// fetch('https://jsonplaceholder.typicode.com/posts/1',
+// {method:'GET'})
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+
+//DELETE
+// fetch('https://jsonplaceholder.typicode.com/posts/1',
+// {method:'DELETE'})
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+
+//POST
+// fetch('https://jsonplaceholder.typicode.com/posts', {
+// method: 'POST',
+// body: JSON.stringify({
+// title: 'foo',
+// body: 'bar',
+// userId: 1
+// }),
+// headers: {
+// "Content-type": "application/json; charset=UTF-8"
+// }
+// })
+// .then(response => response.json())
+// .then(json => console.log(json))
+
+//PATCH
+// fetch('https://jsonplaceholder.typicode.com/posts/1', {
+// method: 'PATCH',
+// body: JSON.stringify({
+// title: 'foo',
+// }),
+// headers: {
+// "Content-type": "application/json; charset=UTF-8"
+// }
+// })
+// .then(response => response.json())
+// .then(json => console.log(json))
+
+//
