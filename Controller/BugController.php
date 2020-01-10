@@ -25,15 +25,26 @@ class BugController{
         // var_dump($headers);
 
         if (isset($headers["xmlHttpRequest"])) {
-            $bugs = $bugManager->findByStatut();
-        }
-        else {
+
+            if(isset($_GET['filter'])){
+                $bugs = $bugManager->findByStatut();
+            }else{
+                $bugs = $bugManager->findAll();    
+            }
+
+            $response=[
+                'success' => true,
+                'id'=> $bugs
+            ];
+    
+            echo json_encode($response);
+
+        }else {
             $bugs = $bugManager->findAll();
+            $content = $this->render('Views/list', ['bugs' => $bugs]);    
+            return $this->sendHttpResponse($content, 200);
         }
         
-        $content = $this->render('Views/list', ['bugs' => $bugs]);    
-        
-        return $this->sendHttpResponse($content, 200);
     }
 
     public function Show($id){

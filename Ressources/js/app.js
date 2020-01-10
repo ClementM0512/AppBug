@@ -41,9 +41,9 @@ function AlertContent(){
              tdchild.classList.remove("badge-warning");
              tdchild.classList.add("badge-primary");
         }
-        
     }
 };
+
 
 
 
