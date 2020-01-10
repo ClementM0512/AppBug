@@ -70,5 +70,13 @@
         'id' => $bug->getId()]);
       
     }
+
+    public function FindByStatut() {
+      $bdd = $this->connexionBdd();
+      $bugs = $bdd->query('SELECT * FROM `bug` WHERE statut=0 ORDER BY `id`',PDO::FETCH_ASSOC);
+
+      return($bugs);
+    }
+
   }
 ?>

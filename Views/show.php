@@ -1,13 +1,7 @@
 <?php
 
-// include("./Models/bugManager.php");
-
-
-
-$arguments = explode("/", $_SERVER["REQUEST_URI"]);
-
 $bugManager = new bugManager();
-$bug = $bugManager->Find($arguments[5]);
+$bug = $params["bug"];
 ?>
 
 
@@ -26,13 +20,13 @@ $bug = $bugManager->Find($arguments[5]);
   <body class="container">
     
     <h1 class="center">Bug : </h1>
-    <h3 class="center"><?=$bug['titre'];?></h3>
+    <h3 class="center"><?=$bug->getTitre();?></h3>
 
     <div class="center DescMarg">
 
-      <?=$bug['description'];?><br>
+      <?=$bug->getDescription();?><br>
 
-      <?php if ($bug['statut']==0){?>
+      <?php if ($bug->getStatut()==0){?>
         <div class="badge badge-warning DescMarg">Non traiter</div>
       <?php }
       else{ ?>

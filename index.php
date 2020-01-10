@@ -26,6 +26,10 @@ switch ($arguments[4]) {
         $idBug = $arguments[5];
         return (new BugController())->Update($idBug);
         break;
+    case "edit":
+        $idBug = $arguments[5];
+        // return (new BugController())->Update($idBug);
+        break;
     default:
         return (new BugController())->Error(); //Erreur 404
 }

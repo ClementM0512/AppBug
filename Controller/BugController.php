@@ -20,16 +20,26 @@ class BugController{
 
     public function List(){
         $bugManager = new BugManager();
-        $bugs = $bugManager->findAll();
-        $content = $this->render('Views/list', ['bugs' => $bugs]);
+        
+        $headers = apache_request_headers();
+        // var_dump($headers);
+
+        if (isset($headers["xmlHttpRequest"])) {
+            $bugs = $bugManager->findByStatut();
+        }
+        else {
+            $bugs = $bugManager->findAll();
+        }
+        
+        $content = $this->render('Views/list', ['bugs' => $bugs]);    
         
         return $this->sendHttpResponse($content, 200);
     }
 
     public function Show($id){
         $bugManager = new BugManager();
-        $bugs = $bugManager->find($id);
-        $content = $this->render('Views/show', ['bugs' => $bugs]);
+        $bug = $bugManager->find($id);
+        $content = $this->render('Views/show', ['bug' => $bug]);
         
         return $this->sendHttpResponse($content, 200);    
     }

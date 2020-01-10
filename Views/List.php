@@ -20,8 +20,15 @@ $bugManager->load();
   <body class="container">
 
     <h1 class="center title">Liste des bugs</h1>
-    </br> <a href="add" class="btn btn-success"><i class="fa fa-plus fa-3x "></i></a>
 
+    <div class="form-group">
+    </br> <a href="add" class="btn btn-success"><i class="fa fa-plus fa-3x "></i></a>
+    <div class="custom-control custom-checkbox checkbox-statut">
+    
+      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+      <label class="custom-control-label" for="customCheck1">Filtre bugs non résolut</label>
+    </div>
+    </div>
     
     <table class="table">
       <h3 class="center"> Listes des bugs rencontrées</h3>
@@ -33,7 +40,7 @@ $bugManager->load();
         <th>Statut du bug</th>
         <th>Créer le</th>
         <th>Plus de détails</th>
-
+        <th>Modifier</th>
       </tr>
 
       <tbody>
@@ -59,6 +66,7 @@ $bugManager->load();
               <?php } ?> </td>
               <td><?=$bug->getCreatedAt();?> </td>
               <td><a href="show/<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
+              <td><a href="edit/<?=$bug->getId()?>"><center><i class="far fa-edit fa-2x"></center></a></td>
             </tr>
           <?php } ?>
       </tr>

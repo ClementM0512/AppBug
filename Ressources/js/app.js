@@ -24,7 +24,7 @@ function MakeRequest(e){
 
 function AlertContent(){
     if (xhr.readyState === XMLHttpRequest.DONE) {
-
+        // console.log(xhr.responseText);
         let obj = JSON.parse(xhr.responseText);
           
         let string = [];
@@ -35,13 +35,13 @@ function AlertContent(){
         });
         
         if (string[0] = "true") {
-            let td = document.getElementById("td_" + string[1]);
-             td.innerHTML = "Résolut";
-             td.classList.remove("badge-warning");
-             td.classList.add("badge-primary");
+            let td = document.getElementById("td_" + string[1]);  
+             let tdchild = td.querySelector("a");
+             tdchild.innerHTML = "Résolut";
+             tdchild.classList.remove("badge-warning");
+             tdchild.classList.add("badge-primary");
         }
-
-        // console.log(els);
+        
     }
 };
 
