@@ -45,7 +45,7 @@ function AlertContent(){
 };
 
 
-
+//////////// faire header plus traiter  le filtrages des bugs
 
 
 //Requete api (postman)
