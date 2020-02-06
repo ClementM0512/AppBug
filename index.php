@@ -13,6 +13,9 @@ switch ($arguments[4]) {
 
     case "":
     case "list":
+        $mana = new bugManager();
+        $mana->FindByStatut();
+
         return (new BugController())->List();
         break;
     case "show":

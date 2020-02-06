@@ -75,6 +75,13 @@
       $bdd = $this->connexionBdd();
       $bugs = $bdd->query('SELECT * FROM `bug` WHERE statut=0 ORDER BY `id`',PDO::FETCH_ASSOC);
 
+      while ($donnee=$bugs->fetch()){
+        $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
+        //var_dump($bug);
+        array_push($this->bugs,$bug);
+      }
+
+      var_dump($this->bugs);
       return($bugs);
     }
 

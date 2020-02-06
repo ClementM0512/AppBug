@@ -25,7 +25,7 @@ $bugManager->load();
     </br> <a href="add" class="btn btn-success"><i class="fa fa-plus fa-3x "></i></a>
     <div class="custom-control custom-checkbox checkbox-statut">
     
-      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+      <input type="checkbox" class="custom-control-input" id="customCheck1">
       <label class="custom-control-label" for="customCheck1">Filtre bugs non résolut</label>
     </div>
     </div>

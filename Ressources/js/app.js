@@ -1,7 +1,6 @@
 var els = document.getElementsByClassName("trigger");
 var idBug = document.getElementsByClassName("idBug");
 
-
 var xhr = new XMLHttpRequest();
 Array.from(els).forEach(el =>{
     el.addEventListener("click", MakeRequest);
@@ -44,9 +43,36 @@ function AlertContent(){
     }
 };
 
+var checkbox = document.getElementById("customCheck1");
+checkbox.addEventListener("change", GestFiltre);
+var xhrCheck = new XMLHttpRequest();
 
-//////////// faire header plus traiter  le filtrages des bugs
+function GestFiltre(e){
+    e.preventDefault();
+    
+    let url = "list/";
+    let filter;
+    if (checkbox.checked == true) { 
+        filter = true; 
+    }
+    else{ 
+        filter = false;
+    }
 
+    let params = "filter=" + filter;
+    console.log(params);
+
+    xhrCheck.onreadystatechange = BugsFilter;
+
+    xhrCheck.open('POST', url);
+    xhrCheck.setRequestHeader("xhr", true);
+    xhrCheck.send(params);
+
+}
+
+function BugsFilter(){
+    
+}
 
 //Requete api (postman)
 
