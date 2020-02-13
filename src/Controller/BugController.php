@@ -62,17 +62,25 @@ class BugController{
         if (isset($_POST)) {//Si data en post
             if (isset($_POST['statut'])) {
                 $bug->setStatut($_POST['statut']);
+
+                $bugManager->UpdateBug($bug); 
+
+                http_response_code(200);
+                 header("Content-Type: application/json");
+                $response=[
+                    'success' => true,
+                    'id'=> $bug->getId()
+                ];
+            }
+            else {
+                $content = $this->render('src/Views/edit', ['bug' => $bug]);
+        
+                return $this->sendHttpResponse($content, 200);    
             }
     
-            $bugManager->UpdateBug($bug); 
         }
         
-        http_response_code(200);
-        header("Content-Type: application/json");
-        $response=[
-            'success' => true,
-            'id'=> $bug->getId()
-        ];
+        
 
         echo json_encode($response);
     }

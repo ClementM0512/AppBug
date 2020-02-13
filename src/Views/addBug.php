@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <?php require("stdafx.php");?>
+  <?php require("stdafx2.php");?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Ajout d'un bug</title>
     <meta charset="utf-8" />

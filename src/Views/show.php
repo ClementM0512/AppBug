@@ -1,6 +1,4 @@
 <?php
-use AppBug\Models\BugManager;
-$bugManager = new BugManager();
 $bug = $params["bug"];
 ?>
 
@@ -8,9 +6,7 @@ $bug = $params["bug"];
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" >
-    <link rel="stylesheet" href="../bootstrap.css"/>
-    <link rel="stylesheet" href="../AppStylesheet.css"/>
+    <?php require("stdafx.php");?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Description du bug</title>
     <meta charset="utf-8" />
