@@ -1,8 +1,9 @@
 <?php
-  include('bug.php');
-  include('Manager.php');
-
-  class bugManager extends Manager{
+  namespace AppBug\Models;
+  use AppBug\Models\Bug;
+  use AppBug\Models\Manager;
+  
+  class BugManager extends Manager{
     private $bugs = [];
 
     function __construct() {
@@ -15,7 +16,7 @@
       // var_dump($bug);
       $state->execute(['id' => $id]);
 
-      $data = $state->fetch(PDO::FETCH_ASSOC);
+      $data = $state->fetch(\PDO::FETCH_ASSOC);
       $bug = new Bug($data['id'], $data['titre'], $data['description'], $data['statut'], $data['createdAt']);
 
       return($bug);
@@ -29,7 +30,7 @@
 
     public function load(){
       $bdd = $this->connexionBdd();
-      $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
+      $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',\PDO::FETCH_ASSOC);
       // var_dump($bdd);
 
       while ($donnee=$bugs->fetch()){
@@ -73,7 +74,7 @@
 
     public function FindByStatut() {
       $bdd = $this->connexionBdd();
-      $bugs = $bdd->query('SELECT * FROM `bug` WHERE statut=0 ORDER BY `id`',PDO::FETCH_ASSOC);
+      $bugs = $bdd->query('SELECT * FROM `bug` WHERE statut=0 ORDER BY `id`',\PDO::FETCH_ASSOC);
 
       while ($donnee=$bugs->fetch()){
         $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
@@ -81,7 +82,7 @@
         array_push($this->bugs,$bug);
       }
 
-      var_dump($this->bugs);
+      // var_dump($this->bugs);
       return($bugs);
     }
 

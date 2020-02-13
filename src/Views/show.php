@@ -1,6 +1,6 @@
 <?php
-
-$bugManager = new bugManager();
+use AppBug\Models\BugManager;
+$bugManager = new BugManager();
 $bug = $params["bug"];
 ?>
 

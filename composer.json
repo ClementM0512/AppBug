@@ -1,0 +1,16 @@
+{
+    "name": "eleve/app-bug",
+    "authors": [
+        {
+            "name": "ClementM0512",
+            "email": "34575889+ClementM0512@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+
+    "autoload":{
+        "psr-4":{
+            "AppBug\\":"src/"
+        }
+    }
+}

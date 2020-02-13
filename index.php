@@ -1,6 +1,7 @@
 <?php
-include("Controller/BugController.php");
-
+require "vendor/autoload.php";
+use AppBug\Controller\BugController;
+use AppBug\Models\BugManager;
 // var_dump($_SERVER["REQUEST_URI"]);
 
 $arguments = explode("/", $_SERVER["REQUEST_URI"]);
@@ -13,7 +14,7 @@ switch ($arguments[4]) {
 
     case "":
     case "list":
-        $mana = new bugManager();
+        $mana = new BugManager();
         $mana->FindByStatut();
 
         return (new BugController())->List();

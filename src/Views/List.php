@@ -2,8 +2,8 @@
 
 // include("./Models/bugManager.php");
 // include("stdafx.php");
-
-$bugManager = new bugManager();
+use AppBug\Models\BugManager;
+$bugManager = new BugManager();
 $bugManager->load();
 
 ?>
@@ -73,5 +73,5 @@ $bugManager->load();
     </table></div>
     
   </body>
-  <script src="Ressources/js/app.js"></script>
+  <script src="src/Ressources/js/app.js"></script>
 </html>

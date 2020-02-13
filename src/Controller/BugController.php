@@ -1,6 +1,6 @@
 <?php
-require('Models/bugManager.php');
-
+namespace AppBug\Controller;
+use AppBug\Models\BugManager;
 class BugController{
 
     public function Add(){
@@ -13,7 +13,7 @@ class BugController{
             
         }
         else{
-            $content = $this->render('Views/addBug', []);
+            $content = $this->render('src/Views/addBug', []);
             return $this->sendHttpResponse($content, 200);
         }
     }
@@ -41,7 +41,7 @@ class BugController{
 
         }else {
             $bugs = $bugManager->findAll();
-            $content = $this->render('Views/list', ['bugs' => $bugs]);    
+            $content = $this->render('src/Views/list', ['bugs' => $bugs]);    
             return $this->sendHttpResponse($content, 200);
         }
         
@@ -50,7 +50,7 @@ class BugController{
     public function Show($id){
         $bugManager = new BugManager();
         $bug = $bugManager->find($id);
-        $content = $this->render('Views/show', ['bug' => $bug]);
+        $content = $this->render('src/Views/show', ['bug' => $bug]);
         
         return $this->sendHttpResponse($content, 200);    
     }
