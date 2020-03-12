@@ -1,13 +1,15 @@
 <?php
 namespace AppBug\Controller;
 use AppBug\Models\BugManager;
+use AppBug\Models\Bug;
+
 class BugController{
 
     public function Add(){
         
         if(isset($_POST['titre'])){
             $bugManager = new BugManager();
-            $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"");
+            $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"",$_POST['NDD'],"");
             $bugManager->addBug($bug);
             header('Location: list'); 
             

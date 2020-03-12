@@ -21,6 +21,7 @@
 
         <input class="Titre form-control"type="text" name="titre" value = '' placeholder="Titre du bug"/>
         <textarea class="Description form-control" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea>
+        <input class="NDD form-control"type="text" name="NDD" value = '' placeholder="Nom de domaine"/>
         <input type="hidden" name="statut" value ="0"/>
 
 

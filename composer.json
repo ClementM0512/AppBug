@@ -6,7 +6,10 @@
             "email": "34575889+ClementM0512@users.noreply.github.com"
         }
     ],
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "larapack/dd": "^1.1"
+    },
 
     "autoload":{
         "psr-4":{

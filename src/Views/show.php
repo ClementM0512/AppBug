@@ -1,5 +1,6 @@
 <?php
 $bug = $params["bug"];
+// var_dump($bug)
 ?>
 
 
@@ -21,7 +22,8 @@ $bug = $params["bug"];
     <div class="center DescMarg">
 
       <?=$bug->getDescription();?><br>
-
+      <?=$bug->getNdd();?><br>
+      <?=$bug->getIp();?><br>
       <?php if ($bug->getStatut()==0){?>
         <div class="badge badge-warning DescMarg">Non traiter</div>
       <?php }

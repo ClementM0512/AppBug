@@ -2,12 +2,23 @@
   namespace AppBug\Models;
   use AppBug\Models\Bug;
   use AppBug\Models\Manager;
+  use GuzzleHttp\Client;
   
   class BugManager extends Manager{
     private $bugs = [];
 
     function __construct() {
 
+    }
+
+    private function GetIpNDD($NDD){
+      $client = new Client();
+      $uri = 'http://ip-api.com/json/'.$NDD;
+      $response = $client->request('GET', $uri);
+
+      $data = json_decode($response->getBody()); 
+      $data = $data->query;
+      return $data;
     }
 
     public function Find($id){
@@ -17,7 +28,8 @@
       $state->execute(['id' => $id]);
 
       $data = $state->fetch(\PDO::FETCH_ASSOC);
-      $bug = new Bug($data['id'], $data['titre'], $data['description'], $data['statut'], $data['createdAt']);
+      $bug = new Bug($data['id'], $data['titre'], $data['description'], $data['statut'], $data['createdAt'], 
+      $data['NDD'] , $data['IP']);
 
       return($bug);
     }
@@ -34,7 +46,8 @@
       // var_dump($bdd);
 
       while ($donnee=$bugs->fetch()){
-        $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
+        $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt'], 
+        $donnee['NDD'] , $donnee['IP']);
         //var_dump($bug);
         array_push($this->bugs,$bug);
       }
@@ -42,20 +55,18 @@
 
     public function addBug(Bug $newBug){
       $bdd = $this->connexionBdd();
-      $date = new DateTime();
+      $date = new \DateTime();
       $date = $date->format('Y-m-d H:i:s');
 
-      // $bdd->query('INSERT INTO `bug` (titre, description, statut, createdAt) VALUE ("'.$newBug->getTitre(). '", "'.$newBug->getDescription(). 
-      // '", "'. $newBug->getStatut(). '", "'.$date.'")'); 
-
-      //changer par:
-      //prepare, execute, fetch
-      $state = $bdd->prepare("INSERT INTO `bug` (titre, description, statut, createdAt) VALUE (:title, :description, :statut, :createdAt)");
+      $ip = $this->GetIpNDD($newBug->getNDD());
+      $state = $bdd->prepare("INSERT INTO `bug` (titre, description, statut, createdAt, NDD, IP) VALUE (:title, :description, :statut, :createdAt, :NDD, :IP)");
       $state->execute([
         'title' => $newBug->getTitre(),
         'description' => $newBug->getDescription(),
         'statut' => $newBug->getStatut(),
-        'createdAt' => $date
+        'createdAt' => $date,
+        'NDD' => $newBug->getNdd(),
+        'IP' => $ip
       ]);
 
     }
@@ -77,7 +88,8 @@
       $bugs = $bdd->query('SELECT * FROM `bug` WHERE statut=0 ORDER BY `id`',\PDO::FETCH_ASSOC);
 
       while ($donnee=$bugs->fetch()){
-        $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt']);
+        $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt'],
+        $donnee['NDD'] , $donnee['IP']);
         //var_dump($bug);
         array_push($this->bugs,$bug);
       }
@@ -85,6 +97,7 @@
       // var_dump($this->bugs);
       return($bugs);
     }
+
 
   }
 ?>

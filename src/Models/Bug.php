@@ -6,15 +6,19 @@ class Bug{
     public $description;
     public $statut;
     public $createdAt;
+    public $NDD;
+    public $IP;
 
 
 
-    public function __construct($id, $titre, $description, $statut, $createdAt) {
+    public function __construct($id, $titre, $description, $statut, $createdAt, $NDD, $IP) {
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
         $this->statut = $statut;
         $this->createdAt = $createdAt;
+        $this->NDD = $NDD;
+        $this->IP = $IP;
     }
 
     function getId() {
@@ -33,6 +37,14 @@ class Bug{
         return $this->statut;
     }
 
+    function getNdd() {
+        return $this->NDD;
+    }
+
+    function getIp() {
+        return $this->IP;
+    }
+
     public function getCreatedAt(){
         return $this->createdAt;
     }
@@ -45,6 +57,18 @@ class Bug{
 
     function setId($id) {
         $this->id = $id;
+
+        return $this;
+    }
+
+    function setNdd($NDD) {
+        $this->NDD = $NDD;
+
+        return $this;
+    }
+
+    function setIp($IP) {
+        $this->IP = $IP;
 
         return $this;
     }

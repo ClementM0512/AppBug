@@ -38,6 +38,8 @@ $bugManager->load();
         <th>Titre du bug</th>
         <th>Description du bug</th>
         <th>Statut du bug</th>
+        <th>NDD</th>
+        <th>IP</th>
         <th>Créer le</th>
         <th>Plus de détails</th>
         <th>Modifier</th>
@@ -53,6 +55,8 @@ $bugManager->load();
               <td><?= $bug->getId();?></td>
               <td><?= $bug->getTitre();?></td>
               <td><?=$bug->getDescription();?> </td>
+              <td><?=$bug->getNdd();?> </td>
+              <td><?=$bug->getIp();?> </td>
               <td id="td_<?= $bug->getId();?>"><?php
               if ($bug->getStatut()==0){?>
 
