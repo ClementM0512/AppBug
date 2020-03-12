@@ -8,10 +8,12 @@ class Bug{
     public $createdAt;
     public $NDD;
     public $IP;
+    public $ipURL;
+    public $URL;
 
 
 
-    public function __construct($id, $titre, $description, $statut, $createdAt, $NDD, $IP) {
+    public function __construct($id, $titre, $description, $statut, $createdAt, $NDD, $IP, $ipURL, $URL) {
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
@@ -19,6 +21,8 @@ class Bug{
         $this->createdAt = $createdAt;
         $this->NDD = $NDD;
         $this->IP = $IP;
+        $this->ipURL = $ipURL;
+        $this->URL = $URL;
     }
 
     function getId() {
@@ -45,6 +49,14 @@ class Bug{
         return $this->IP;
     }
 
+    function getIpURL() {
+        return $this->ipURL;
+    }
+
+    function getURL() {
+        return $this->URL;
+    }
+
     public function getCreatedAt(){
         return $this->createdAt;
     }
@@ -69,6 +81,18 @@ class Bug{
 
     function setIp($IP) {
         $this->IP = $IP;
+
+        return $this;
+    }
+
+    function setIpURL($ipURL) {
+        $this->ipURL = $ipURL;
+
+        return $this;
+    }
+
+    function setURL($URL) {
+        $this->URL = $URL;
 
         return $this;
     }

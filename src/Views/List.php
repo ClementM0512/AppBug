@@ -40,7 +40,7 @@ $bugManager->load();
         <th>Statut du bug</th>
         <th>NDD</th>
         <th>IP</th>
-        <th>Créer le</th>
+        <th>ipURL</th>
         <th>Plus de détails</th>
         <th>Modifier</th>
       </tr>
@@ -55,20 +55,16 @@ $bugManager->load();
               <td><?= $bug->getId();?></td>
               <td><?= $bug->getTitre();?></td>
               <td><?=$bug->getDescription();?> </td>
-              <td><?=$bug->getNdd();?> </td>
-              <td><?=$bug->getIp();?> </td>
               <td id="td_<?= $bug->getId();?>"><?php
               if ($bug->getStatut()==0){?>
-
                 <a href="" class="trigger badge badge-warning">Non traiter</a>
-
               <?php }
               else{ ?>
-
                 <div class="badge badge-primary">Résolut</div>
-
               <?php } ?> </td>
-              <td><?=$bug->getCreatedAt();?> </td>
+              <td><?=$bug->getNdd();?> </td>
+              <td><?=$bug->getIp();?> </td>
+              <td><?=$bug->getIpURL();?></td>
               <td><a href="show/<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
               <td><a href="edit/<?=$bug->getId()?>"><center><i class="far fa-edit fa-2x"></center></a></td>
             </tr>

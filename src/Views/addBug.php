@@ -19,13 +19,14 @@
     if(empty($_POST)){ ?>
       <form action="" method="post">
 
-        <input class="Titre form-control"type="text" name="titre" value = '' placeholder="Titre du bug"/>
-        <textarea class="Description form-control" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea>
-        <input class="NDD form-control"type="text" name="NDD" value = '' placeholder="Nom de domaine"/>
+        <input class="app-form form-control" type="text" name="titre" value = '' placeholder="Titre du bug"/>
+        <textarea class="app-form form-control" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea>
+        <input class="app-form form-control" type="text" name="NDD" value = '' placeholder="Nom de domaine"/>
+        <input class="app-form form-control" type="text" name="URL" placeholder="URL"/>
         <input type="hidden" name="statut" value ="0"/>
 
 
-        <input class="btn btn-success button" type="submit" value="Valider" />
+        <input class="btn btn-success app-form" type="submit" value="Valider" />
       </form>
   </div>
 

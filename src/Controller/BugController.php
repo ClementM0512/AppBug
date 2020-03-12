@@ -9,10 +9,9 @@ class BugController{
         
         if(isset($_POST['titre'])){
             $bugManager = new BugManager();
-            $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"",$_POST['NDD'],"");
+            $bug = new Bug("",$_POST['titre'],$_POST['description'],$_POST['statut'],"",$_POST['NDD'],"","",$_POST['URL']);
             $bugManager->addBug($bug);
             header('Location: list'); 
-            
         }
         else{
             $content = $this->render('src/Views/addBug', []);
@@ -24,7 +23,6 @@ class BugController{
         $bugManager = new BugManager();
         
         $headers = apache_request_headers();
-        // var_dump($headers);
 
         if (isset($headers["xmlHttpRequest"])) {
 

@@ -11,6 +11,15 @@
 
     }
 
+    private function GetIpURL($URL){
+      $NDD = parse_url($URL, PHP_URL_HOST);
+      $ip = $this->GetIpNDD($NDD);
+      return [
+        'ipURL' => $ip,
+        'URL'   => $URL
+      ];
+    }
+
     private function GetIpNDD($NDD){
       $client = new Client();
       $uri = 'http://ip-api.com/json/'.$NDD;
@@ -24,12 +33,11 @@
     public function Find($id){
       $bdd = $this->connexionBdd();
       $state = $bdd->prepare('SELECT * FROM `bug` WHERE id=:id');
-      // var_dump($bug);
       $state->execute(['id' => $id]);
 
       $data = $state->fetch(\PDO::FETCH_ASSOC);
       $bug = new Bug($data['id'], $data['titre'], $data['description'], $data['statut'], $data['createdAt'], 
-      $data['NDD'] , $data['IP']);
+      $data['NDD'] , $data['IP'], $data['ipURL'], $data['URL']);
 
       return($bug);
     }
@@ -47,7 +55,7 @@
 
       while ($donnee=$bugs->fetch()){
         $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt'], 
-        $donnee['NDD'] , $donnee['IP']);
+        $donnee['NDD'] , $donnee['IP'], $donnee['ipURL'], $donnee['URL']);
         //var_dump($bug);
         array_push($this->bugs,$bug);
       }
@@ -59,14 +67,19 @@
       $date = $date->format('Y-m-d H:i:s');
 
       $ip = $this->GetIpNDD($newBug->getNDD());
-      $state = $bdd->prepare("INSERT INTO `bug` (titre, description, statut, createdAt, NDD, IP) VALUE (:title, :description, :statut, :createdAt, :NDD, :IP)");
+      $ipURL = $this->getIpURL($newBug->getIpURL());
+
+      $state = $bdd->prepare("INSERT INTO `bug` (titre, description, statut, createdAt, NDD, IP, ipURL, URL)
+       VALUE (:title, :description, :statut, :createdAt, :NDD, :IP, :ipURL, :URL)");
       $state->execute([
         'title' => $newBug->getTitre(),
         'description' => $newBug->getDescription(),
         'statut' => $newBug->getStatut(),
         'createdAt' => $date,
         'NDD' => $newBug->getNdd(),
-        'IP' => $ip
+        'IP' => $ip,
+        'ipURL' => $ipURL['ipURL'],
+        'URL' => $ipURL['URL'],
       ]);
 
     }
@@ -89,7 +102,7 @@
 
       while ($donnee=$bugs->fetch()){
         $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut'], $donnee['createdAt'],
-        $donnee['NDD'] , $donnee['IP']);
+        $donnee['NDD'] , $donnee['IP'], $donnee['ipURL'], $donnee['URL']);
         //var_dump($bug);
         array_push($this->bugs,$bug);
       }

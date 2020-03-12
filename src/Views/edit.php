@@ -23,6 +23,6 @@ $bug = $params["bug"];
         <button type="submit" class="btn btn-primary">Valider</button>
     </form>
     </div>
-    <a href="../list" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-3x"></i></a>   
+    <a href="../list" class="btn btn-success app-form"><i class="fas fa-arrow-circle-left fa-3x"></i></a>   
 </body>
 </html>
